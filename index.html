@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <!-- 아래 APP_NAME과 같은 이름으로 바꾸세요. -->
+  <title>업무 웹앱 설치</title>
+  <meta name="theme-color" content="#14532d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="업무 웹앱">
+
+  <!-- 아래 URL을 아이콘 PNG의 공개 직접 주소로 바꾸세요. (권장: 정사각형 512×512 PNG) -->
+  <link rel="apple-touch-icon" href="https://YOUR-ICON-URL.example.com/icon-512.png">
+  <link rel="icon" type="image/png" href="https://YOUR-ICON-URL.example.com/icon-512.png">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <style>
+    :root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100svh; color: #172018; background: #f4f8f3; }
+    main { width: min(680px, calc(100% - 32px)); margin: 0 auto; padding: 48px 0; }
+    .card { padding: 28px; border: 1px solid #d9e5d8; border-radius: 24px; background: #fff; box-shadow: 0 12px 32px rgba(22, 60, 28, .08); }
+    .brand { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
+    .brand img { width: 64px; height: 64px; border-radius: 14px; object-fit: cover; background: #e6efe5; }
+    h1 { margin: 0; font-size: clamp(24px, 5vw, 32px); line-height: 1.25; }
+    p { line-height: 1.6; }
+    .lead { color: #49604b; margin: 8px 0 24px; }
+    .steps { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+    .steps li { display: flex; gap: 12px; align-items: flex-start; padding: 15px; border-radius: 14px; background: #f4f8f3; }
+    .number { display: grid; flex: 0 0 26px; width: 26px; height: 26px; place-items: center; border-radius: 50%; color: #fff; background: #166534; font-weight: 700; }
+    .steps strong { display: block; margin-bottom: 3px; }
+    .steps span { color: #49604b; font-size: 15px; line-height: 1.45; }
+    .tip { margin: 24px 0 0; padding: 14px 16px; border-left: 4px solid #166534; border-radius: 8px; background: #eef7ed; color: #365438; font-size: 14px; }
+    #launching { display: none; min-height: 100svh; place-items: center; padding: 24px; text-align: center; }
+    #launching img { width: 82px; height: 82px; border-radius: 19px; object-fit: cover; background: #e6efe5; }
+    #launching p { color: #49604b; }
+    body.is-launching main { display: none; }
+    body.is-launching #launching { display: grid; }
+    @media (max-width: 480px) { main { width: min(100% - 24px, 680px); padding: 24px 0; } .card { padding: 22px; border-radius: 20px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="card" aria-labelledby="page-title">
+      <div class="brand">
+        <img src="https://YOUR-ICON-URL.example.com/icon-512.png" alt="업무 웹앱 아이콘">
+        <div><h1 id="page-title">업무 웹앱 설치</h1></div>
+      </div>
+      <p class="lead">아래 안내에 따라 홈 화면에 추가하면, 다음부터는 홈 화면의 아이콘으로 바로 실행할 수 있습니다.</p>
+      <ol class="steps">
+        <li><b class="number">1</b><div><strong>iPad · Safari</strong><span>공유 버튼(□↑) → <b>홈 화면에 추가</b> → <b>추가</b>를 누르세요.</span></div></li>
+        <li><b class="number">2</b><div><strong>Android 태블릿 · Chrome</strong><span>오른쪽 위 <b>⋮</b> → <b>홈 화면에 추가</b> → <b>설치</b> 또는 <b>추가</b>를 누르세요.</span></div></li>
+      </ol>
+      <p class="tip">설치가 끝난 뒤에는 이 페이지를 다시 열 필요가 없습니다. 홈 화면의 아이콘을 누르면 업무 웹앱으로 자동 이동합니다.</p>
+    </section>
+  </main>
+
+  <section id="launching" aria-live="polite">
+    <div>
+      <img src="https://YOUR-ICON-URL.example.com/icon-512.png" alt="">
+      <h1>업무 웹앱을 여는 중…</h1>
+      <p>잠시만 기다려 주세요.</p>
+    </div>
+  </section>
+
+  <script>
+    // ===== 배포 전에 이 주소만 실제 Apps Script 웹앱 주소로 바꾸세요. =====
+    const WEB_APP_URL = 'https://script.google.com/macros/s/YOUR-WEB-APP-ID/exec';
+
+    // Safari 홈 바로가기와 Android Chrome 설치형 웹앱을 구분합니다.
+    const openedFromHomeScreen =
+      window.navigator.standalone === true ||
+      window.matchMedia('(display-mode: standalone)').matches;
+
+    if (openedFromHomeScreen) {
+      document.body.classList.add('is-launching');
+      window.setTimeout(() => window.location.replace(WEB_APP_URL), 80);
+    }
+  </script>
+</body>
+</html>
+
