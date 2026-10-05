@@ -17,16 +17,20 @@
   <meta name="theme-color" content="#0b63d8">
 
   <script>
-    // ⚠️ 아래 큰따옴표("") 안에 Google Apps Script의 최종 웹 앱 배포 URL(exec 주소)을 넣으세요.
     const GAS_WEB_APP_URL = "https://script.google.com/a/macros/bau.ac.kr/s/AKfycbxwfQ8CFtCFVIGfR826H9luW6pCjaNCfOAZft9_BYBCRezo8sA-00DgJ3456HZ1RDAGug/exec";
 
-    // 접속 즉시 구글 앱스크립트 웹 앱으로 이동
-    window.location.href = GAS_WEB_APP_URL;
+    // Safari가 아이콘 태그를 읽을 시간을 확보하기 위해 0.3초 후 이동
+    window.addEventListener("DOMContentLoaded", () => {
+      setTimeout(() => {
+        window.location.href = GAS_WEB_APP_URL;
+      }, 300);
+    });
   </script>
 </head>
 <body>
-  <p style="text-align: center; margin-top: 50px; font-family: sans-serif; color: #666;">
-    입시 전형 체크 페이지로 이동 중입니다...
-  </p>
+  <div style="text-align: center; margin-top: 100px; font-family: -apple-system, sans-serif; color: #555;">
+    <p style="font-size: 18px; font-weight: bold;">입시 전형 체크</p>
+    <p style="font-size: 14px; color: #888;">페이지로 이동 중입니다...</p>
+  </div>
 </body>
 </html>
