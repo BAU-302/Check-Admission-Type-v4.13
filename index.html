@@ -1,68 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>입시 전형 체크</title>
 
-  <!-- 아래 APP_NAME과 같은 이름으로 바꾸세요. -->
-  <title>업무 웹앱 설치</title>
-  <meta name="theme-color" content="#14532d">
+  <!-- iOS Safari 및 Android 홈 화면 아이콘 설정 -->
+  <link rel="apple-touch-icon" href="https://bau-302.github.io/Check-Admission-Type-v4.13/icon-192.jpg">
+  <link rel="apple-touch-icon-precomposed" href="https://bau-302.github.io/Check-Admission-Type-v4.13/icon-192.jpg">
+  <link rel="icon" type="image/jpeg" href="https://bau-302.github.io/Check-Admission-Type-v4.13/icon-192.jpg">
+
+  <!-- iOS Web App 메타 태그 -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="업무 웹앱">
-
-  <!-- icon-180.png, icon-192.png, icon-512.png 파일을 index.html과 같은 폴더에 둡니다. -->
-  <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png?v=1">
-  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png?v=1">
-  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-title" content="입시 전형 체크">
+  <meta name="theme-color" content="#0b63d8">
 
   <script>
-    // ===== 배포 전에 이 주소만 실제 Apps Script 웹앱 주소로 바꾸세요. =====
-    const WEB_APP_URL = 'https://script.google.com/a/macros/bau.ac.kr/s/AKfycbx5OuhkNxfNgwfVwtEAUd_EGpe5YyjSoghXJvP6-GDSlWtJvFwBkeo4OjLCcUdMNkWrVA/exec';
+    // ⚠️ 아래 큰따옴표("") 안에 Google Apps Script의 최종 웹 앱 배포 URL(exec 주소)을 넣으세요.
+    const GAS_WEB_APP_URL = "https://script.google.com/a/macros/bau.ac.kr/s/AKfycbxwfQ8CFtCFVIGfR826H9luW6pCjaNCfOAZft9_BYBCRezo8sA-00DgJ3456HZ1RDAGug/exec";
 
-    // 홈 화면의 설치형 웹앱으로 열렸을 때는 안내 페이지를 그리기 전에 바로 이동합니다.
-    const openedFromHomeScreen =
-      window.navigator.standalone === true ||
-      window.matchMedia('(display-mode: standalone)').matches;
-
-    if (openedFromHomeScreen) window.location.replace(WEB_APP_URL);
+    // 접속 즉시 구글 앱스크립트 웹 앱으로 이동
+    window.location.href = GAS_WEB_APP_URL;
   </script>
-
-  <style>
-    :root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-    * { box-sizing: border-box; }
-    body { margin: 0; min-height: 100svh; color: #172018; background: #f4f8f3; }
-    main { width: min(680px, calc(100% - 32px)); margin: 0 auto; padding: 48px 0; }
-    .card { padding: 28px; border: 1px solid #d9e5d8; border-radius: 24px; background: #fff; box-shadow: 0 12px 32px rgba(22, 60, 28, .08); }
-    .brand { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
-    .brand img { width: 64px; height: 64px; border-radius: 14px; object-fit: cover; background: #e6efe5; }
-    h1 { margin: 0; font-size: clamp(24px, 5vw, 32px); line-height: 1.25; }
-    p { line-height: 1.6; }
-    .lead { color: #49604b; margin: 8px 0 24px; }
-    .steps { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
-    .steps li { display: flex; gap: 12px; align-items: flex-start; padding: 15px; border-radius: 14px; background: #f4f8f3; }
-    .number { display: grid; flex: 0 0 26px; width: 26px; height: 26px; place-items: center; border-radius: 50%; color: #fff; background: #166534; font-weight: 700; }
-    .steps strong { display: block; margin-bottom: 3px; }
-    .steps span { color: #49604b; font-size: 15px; line-height: 1.45; }
-    .tip { margin: 24px 0 0; padding: 14px 16px; border-left: 4px solid #166534; border-radius: 8px; background: #eef7ed; color: #365438; font-size: 14px; }
-    @media (max-width: 480px) { main { width: min(100% - 24px, 680px); padding: 24px 0; } .card { padding: 22px; border-radius: 20px; } }
-  </style>
 </head>
 <body>
-  <main>
-    <section class="card" aria-labelledby="page-title">
-      <div class="brand">
-        <img src="./icon-512.png" alt="업무 웹앱 아이콘">
-        <div><h1 id="page-title">업무 웹앱 설치</h1></div>
-      </div>
-      <p class="lead">아래 안내에 따라 홈 화면에 추가하면, 다음부터는 홈 화면의 아이콘으로 바로 실행할 수 있습니다.</p>
-      <ol class="steps">
-        <li><b class="number">1</b><div><strong>iPad · Safari</strong><span>공유 버튼(□↑) → <b>홈 화면에 추가</b> → <b>추가</b>를 누르세요.</span></div></li>
-        <li><b class="number">2</b><div><strong>Android 태블릿 · Chrome</strong><span>오른쪽 위 <b>⋮</b> → <b>홈 화면에 추가</b> → <b>설치</b> 또는 <b>추가</b>를 누르세요.</span></div></li>
-      </ol>
-      <p class="tip">설치가 끝난 뒤에는 이 페이지를 다시 열 필요가 없습니다. 홈 화면의 아이콘을 누르면 업무 웹앱으로 자동 이동합니다.</p>
-    </section>
-  </main>
-
+  <p style="text-align: center; margin-top: 50px; font-family: sans-serif; color: #666;">
+    입시 전형 체크 페이지로 이동 중입니다...
+  </p>
 </body>
 </html>
