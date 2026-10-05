@@ -5,32 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>입시 전형 체크</title>
 
-  <!-- iOS Safari 및 Android 홈 화면 아이콘 설정 -->
+  <!-- iOS Safari 아이콘 지정 -->
   <link rel="apple-touch-icon" href="https://bau-302.github.io/Check-Admission-Type-v4.13/icon-192.jpg">
   <link rel="apple-touch-icon-precomposed" href="https://bau-302.github.io/Check-Admission-Type-v4.13/icon-192.jpg">
   <link rel="icon" type="image/jpeg" href="https://bau-302.github.io/Check-Admission-Type-v4.13/icon-192.jpg">
 
-  <!-- iOS Web App 메타 태그 -->
+  <!-- 홈 화면에 추가 후 앱으로 실행될 때 설정 -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="입시 전형 체크">
   <meta name="theme-color" content="#0b63d8">
 
   <script>
-    const GAS_WEB_APP_URL = "https://script.google.com/a/macros/bau.ac.kr/s/AKfycbxwfQ8CFtCFVIGfR826H9luW6pCjaNCfOAZft9_BYBCRezo8sA-00DgJ3456HZ1RDAGug/exec";
+    const GAS_WEB_APP_URL = "https://script.google.com/a/macros/bau.ac.kr/s/AKfycbxwfQ8CFtCFVIGfR826H9luW6pCjaNCfOAZft9_BYBCRezo8sA-00DgJ3456HZ1RDAGug/exec
+";
 
-    // Safari가 아이콘 태그를 읽을 시간을 확보하기 위해 0.3초 후 이동
-    window.addEventListener("DOMContentLoaded", () => {
-      setTimeout(() => {
-        window.location.href = GAS_WEB_APP_URL;
-      }, 300);
-    });
+    // 이미 '홈 화면 아이콘'을 눌러서 실행한 경우(standalone 모드)에는 바로 구글 웹 앱으로 이동
+    if (window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches) {
+      window.location.href = GAS_WEB_APP_URL;
+    }
   </script>
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    .icon-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 22px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      margin-bottom: 20px;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 24px;
+      background-color: #0b63d8;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+    }
+    .guide-box {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      font-size: 14px;
+      line-height: 1.6;
+      text-align: left;
+    }
+  </style>
 </head>
 <body>
-  <div style="text-align: center; margin-top: 100px; font-family: -apple-system, sans-serif; color: #555;">
-    <p style="font-size: 18px; font-weight: bold;">입시 전형 체크</p>
-    <p style="font-size: 14px; color: #888;">페이지로 이동 중입니다...</p>
+
+  <img src="https://bau-302.github.io/Check-Admission-Type-v4.13/icon-192.jpg" class="icon-img" alt="앱 아이콘">
+  <h2>입시 전형 체크</h2>
+  <p>홈 화면에 추가하여 앱처럼 편리하게 이용하세요.</p>
+
+  <div class="guide-box">
+    <strong>📱 홈 화면에 추가하는 방법:</strong><br>
+    1. Safari 하단 중앙의 <strong>공유 버튼 (네모+화살표)</strong>을 누릅니다.<br>
+    2. 메뉴를 아래로 내려 <strong>'홈 화면에 추가'</strong>를 선택합니다.<br>
+    3. 우측 상단 <strong>'추가'</strong>를 누르면 바로 생성됩니다.
   </div>
+
+  <a href="javascript:void(0)" onclick="window.location.href=GAS_WEB_APP_URL;" class="btn">
+    웹에서 바로 시작하기 ➔
+  </a>
+
+  <script>
+    // 버튼 클릭 시 이동할 URL 매핑
+    document.querySelector('.btn').onclick = function() {
+      window.location.href = GAS_WEB_APP_URL;
+    };
+  </script>
+
 </body>
 </html>
