@@ -17,12 +17,22 @@
   <meta name="theme-color" content="#0b63d8">
 
   <script>
-    const GAS_WEB_APP_URL = "https://script.google.com/a/macros/bau.ac.kr/s/AKfycbxwfQ8CFtCFVIGfR826H9luW6pCjaNCfOAZft9_BYBCRezo8sA-00DgJ3456HZ1RDAGug/exec
-";
+    // ⚠️ 아래 큰따옴표("") 안에 Google Apps Script의 최종 웹 앱 배포 URL(exec 주소)을 넣으세요.
+    const GAS_WEB_APP_URL = "여기에_구글_앱스크립트_배포_URL_입력";
 
-    // 이미 '홈 화면 아이콘'을 눌러서 실행한 경우(standalone 모드)에는 바로 구글 웹 앱으로 이동
+    // 1. 홈 화면에 설치된 '아이콘'을 눌러서 실행했을 경우 곧바로 구글 웹앱으로 이동
     if (window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches) {
       window.location.href = GAS_WEB_APP_URL;
+    }
+
+    // 2. '웹에서 바로 시작하기' 버튼 클릭 함수
+    function goToApp() {
+      if (GAS_WEB_APP_URL && GAS_WEB_APP_URL !== "여기에_구글_앱스크립트_배포_URL_입력") {
+        window.location.href = GAS_WEB_APP_URL;
+      } else {
+        alert("https://script.google.com/a/macros/bau.ac.kr/s/AKfycbxwfQ8CFtCFVIGfR826H9luW6pCjaNCfOAZft9_BYBCRezo8sA-00DgJ3456HZ1RDAGug/exec
+");
+      }
     }
   </script>
 
@@ -44,18 +54,21 @@
     .btn {
       display: inline-block;
       margin-top: 25px;
-      padding: 12px 24px;
+      padding: 14px 28px;
       background-color: #0b63d8;
       color: white;
       text-decoration: none;
       font-weight: bold;
       border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
     }
     .guide-box {
       background: white;
       padding: 20px;
       border-radius: 12px;
-      margin-top: 30px;
+      margin-top: 25px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
       font-size: 14px;
       line-height: 1.6;
@@ -66,8 +79,8 @@
 <body>
 
   <img src="https://bau-302.github.io/Check-Admission-Type-v4.13/icon-192.jpg" class="icon-img" alt="앱 아이콘">
-  <h2>입시 전형 체크</h2>
-  <p>홈 화면에 추가하여 앱처럼 편리하게 이용하세요.</p>
+  <h2 style="margin: 0 0 10px 0;">입시 전형 체크</h2>
+  <p style="margin: 0; color: #666;">홈 화면에 추가하여 앱처럼 편리하게 이용하세요.</p>
 
   <div class="guide-box">
     <strong>📱 홈 화면에 추가하는 방법:</strong><br>
@@ -76,16 +89,9 @@
     3. 우측 상단 <strong>'추가'</strong>를 누르면 바로 생성됩니다.
   </div>
 
-  <a href="javascript:void(0)" onclick="window.location.href=GAS_WEB_APP_URL;" class="btn">
+  <button type="button" onclick="goToApp()" class="btn">
     웹에서 바로 시작하기 ➔
-  </a>
-
-  <script>
-    // 버튼 클릭 시 이동할 URL 매핑
-    document.querySelector('.btn').onclick = function() {
-      window.location.href = GAS_WEB_APP_URL;
-    };
-  </script>
+  </button>
 
 </body>
 </html>
